@@ -13,6 +13,8 @@ Civitas brings Erlang's battle-tested fault-tolerance model to Python agent syst
 | [python-civitas](https://github.com/civitas-io/python-civitas) | The core runtime — `AgentProcess`, `Supervisor`, `MessageBus`, transports, OTEL tracing | Everyone building Python agents |
 | [civitas-contrib](https://github.com/civitas-io/civitas-contrib) | Community extras — Fabrica (MCP tools gateway), framework adapters, provider plugins | Contributors and integration authors |
 | [presidium](https://github.com/civitas-io/presidium) | Governed agent platform — policy engine, registry, audit, credential vault | Teams running agents in production with compliance requirements |
+| [promptshrink](https://github.com/civitas-io/promptshrink) | Prompt compression — 30–50% token reduction, one-line integration, built on Civitas | Anyone paying LLM API bills |
+| [presidium-examples](https://github.com/civitas-io/presidium-examples) | Governed agent demos — HR assistant, support triage, SOC automation | Evaluators and new contributors |
 
 ---
 
@@ -22,6 +24,7 @@ Civitas brings Erlang's battle-tested fault-tolerance model to Python agent syst
 pip install civitas                       # core runtime
 pip install civitas-contrib[fabrica]      # + MCP tools gateway
 pip install presidium                     # + enterprise governance
+pip install promptshrink                  # + prompt compression (30–50% cost reduction)
 ```
 
 ---
