@@ -1,8 +1,8 @@
 # Civitas
 
-**The production runtime for Python agents.**
+**The production runtime for Python agents — and the toolchain around it.**
 
-Civitas brings Erlang's battle-tested fault-tolerance model to Python agent systems: supervision trees that restart crashed agents automatically, transport-agnostic message passing that scales from a single script to a distributed cluster, and first-class observability with zero instrumentation code.
+Civitas brings Erlang's battle-tested fault-tolerance model to Python agent systems: supervision trees that restart crashed agents automatically, transport-agnostic message passing that scales from a single script to a distributed cluster, and first-class observability with zero instrumentation code. Around that runtime, the org also builds the tools an AI agent (or the human running one) needs day to day — governed execution, context-efficient code search, and credential handling that never puts a secret in front of the model.
 
 ---
 
@@ -13,6 +13,8 @@ Civitas brings Erlang's battle-tested fault-tolerance model to Python agent syst
 | [python-civitas](https://github.com/civitas-io/python-civitas) | The core runtime — `AgentProcess`, `Supervisor`, `MessageBus`, transports, OTEL tracing | Everyone building Python agents |
 | [civitas-contrib](https://github.com/civitas-io/civitas-contrib) | Community extras — Fabrica (MCP tools gateway), framework adapters, provider plugins | Contributors and integration authors |
 | [presidium](https://github.com/civitas-io/presidium) | Governed agent platform — policy engine, registry, audit, credential vault | Teams running agents in production with compliance requirements |
+| [prx](https://github.com/civitas-io/prx) (Praxis) | Agent-native Unix tools — single Rust binary replacing `grep`/`cat`/`find`/`sed`/`diff` with ranked, token-budgeted JSON and built-in semantic search | Anyone running AI coding agents that need to read less and act faster |
+| [tessera](https://github.com/civitas-io/tessera) (`tsr`) | Agent-blind credential broker — agents *use* secrets via `tsr exec`/`http`/`proxy`, they never see the plaintext (alpha) | Anyone letting an agent run commands that need real credentials |
 | [promptshrink](https://github.com/civitas-io/promptshrink) | Prompt compression — 30–50% token reduction, one-line integration, built on Civitas | Anyone paying LLM API bills |
 | [presidium-examples](https://github.com/civitas-io/presidium-examples) | Governed agent demos — HR assistant, support triage, SOC automation | Evaluators and new contributors |
 
@@ -20,11 +22,24 @@ Civitas brings Erlang's battle-tested fault-tolerance model to Python agent syst
 
 ## Install
 
+**Python packages:**
+
 ```bash
 pip install civitas                       # core runtime
 pip install civitas-contrib[fabrica]      # + MCP tools gateway
 pip install presidium                     # + enterprise governance
 pip install promptshrink                  # + prompt compression (30–50% cost reduction)
+```
+
+**Standalone tools (Rust binaries — no Python dependency):**
+
+```bash
+# prx — agent-native replacement for grep/cat/find/sed/diff
+brew install civitas-io/tap/prx           # or: cargo install prx
+
+# tessera — agent-blind credential broker
+gh release download --repo civitas-io/tessera --pattern 'tsr-aarch64-apple-darwin.tar.gz'
+tar -xzf tsr-*.tar.gz && sudo mv tsr /usr/local/bin/
 ```
 
 ---
@@ -44,6 +59,8 @@ pip install promptshrink                  # + prompt compression (30–50% cost 
 - **Runtime bugs and core features** → [python-civitas](https://github.com/civitas-io/python-civitas/blob/main/CONTRIBUTING.md)
 - **Integrations, adapters, plugins** → [civitas-contrib](https://github.com/civitas-io/civitas-contrib)
 - **Governance and enterprise features** → [presidium](https://github.com/civitas-io/presidium)
+- **Agent-native dev tooling** → [prx](https://github.com/civitas-io/prx)
+- **Credential brokering for agents** → [tessera](https://github.com/civitas-io/tessera)
 
 ---
 
@@ -69,6 +86,8 @@ Read these in order:
 4. https://raw.githubusercontent.com/civitas-io/presidium/main/docs/design/agent-registry.md
 5. https://raw.githubusercontent.com/civitas-io/presidium/main/docs/design/policy-engine.md
 6. https://raw.githubusercontent.com/civitas-io/presidium-examples/main/README.md
+7. https://raw.githubusercontent.com/civitas-io/prx/main/README.md
+8. https://raw.githubusercontent.com/civitas-io/tessera/main/README.md
 
 Be specific and concrete. Treat this as a technical briefing, not a marketing summary.
 ```
